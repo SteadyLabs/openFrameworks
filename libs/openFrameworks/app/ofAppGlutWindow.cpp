@@ -19,6 +19,8 @@
 #endif
 
 
+ofTouch *touchPtr;
+
 // glut works with static callbacks UGH, so we need static variables here:
 
 static int			windowMode;
@@ -157,6 +159,9 @@ static LRESULT CALLBACK winProc(HWND hwnd, UINT Msg, WPARAM wParam, LPARAM lPara
             // We pass the wParam because it's the HDROP handle.
             HandleFiles(wParam);
             break;
+	  case WM_TOUCH:  
+         return touchPtr->processTouch(hwnd, wParam, lParam);  
+         break; 
       default:
          return CallWindowProc(currentWndProc, handle, Msg, wParam, lParam);
       break;
@@ -211,6 +216,8 @@ ofAppGlutWindow::ofAppGlutWindow(){
 	displayString		= "";
 	orientation			= OF_ORIENTATION_DEFAULT;
 	bDoubleBuffered = true; // LIA
+
+	touchPtr=new ofTouch(0);
 
 }
 
@@ -292,7 +299,6 @@ void ofAppGlutWindow::setupOpenGL(int w, int h, int screenMode){
 //------------------------------------------------------------
 void ofAppGlutWindow::initializeWindow(){
 
-
     //----------------------
     // setup the callbacks
 
@@ -320,6 +326,18 @@ void ofAppGlutWindow::initializeWindow(){
         //----------------------
         // this is specific to windows (respond properly to close / destroy)
         fixCloseWindowOnWin32();
+			// test for touch
+		int value = GetSystemMetrics(SM_DIGITIZER);
+		if (value & NID_READY){ /* stack ready */}
+		if (value & NID_MULTI_INPUT){
+			/* digitizer is multitouch */ 
+			//MessageBoxW(handle, L"Multitouch found", L"IsMulti!", MB_OK);
+			RegisterTouchWindow(handle, 0);
+		} 
+		else 
+			MessageBoxW(handle, L"No Multitouch found", L"not good", MB_OK);
+	
+		if (value & NID_INTEGRATED_TOUCH){ /* Integrated touch */}
     #endif
 
 }
@@ -327,6 +345,8 @@ void ofAppGlutWindow::initializeWindow(){
 //------------------------------------------------------------
 void ofAppGlutWindow::runAppViaInfiniteLoop(ofBaseApp * appPtr){
 	ofAppPtr = appPtr;
+
+	touchPtr->setAppPointer(appPtr);  
 
 	ofNotifySetup();
 	ofNotifyUpdate();

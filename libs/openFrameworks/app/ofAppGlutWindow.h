@@ -4,6 +4,7 @@
 #include "ofAppBaseWindow.h"
 #include "ofEvents.h"
 #include "ofTypes.h"
+#include "ofTouch.h"
 
 //class ofPoint;
 class ofBaseApp;
@@ -68,8 +69,5 @@ public:
 	static void entry_cb(int state);
 	static void dragEvent(char ** fileNames, int howManyFiles, int dragX, int dragY);
 	string displayString;
-	
-	
-		 
 };
 

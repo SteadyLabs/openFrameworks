@@ -89,6 +89,7 @@
     <ClInclude Include="..\..\..\openFrameworks\3d\ofNode.h" />
     <ClInclude Include="..\..\..\openFrameworks\app\ofAppBaseWindow.h" />
     <ClInclude Include="..\..\..\openFrameworks\app\ofBaseApp.h" />
+    <ClInclude Include="..\..\..\openFrameworks\events\ofTouch.h" />
     <ClInclude Include="..\..\..\openFrameworks\gl\ofFbo.h" />
     <ClInclude Include="..\..\..\openFrameworks\gl\ofGLRenderer.h" />
     <ClInclude Include="..\..\..\openFrameworks\gl\ofGLUtils.h" />
@@ -158,6 +159,7 @@
     <ClCompile Include="..\..\..\openFrameworks\app\ofAppGlutWindow.cpp" />
     <ClCompile Include="..\..\..\openFrameworks\app\ofAppRunner.cpp" />
     <ClCompile Include="..\..\..\openFrameworks\events\ofEvents.cpp" />
+    <ClCompile Include="..\..\..\openFrameworks\events\ofTouch.cpp" />
     <ClCompile Include="..\..\..\openFrameworks\gl\ofFbo.cpp" />
     <ClCompile Include="..\..\..\openFrameworks\gl\ofGLRenderer.cpp" />
     <ClCompile Include="..\..\..\openFrameworks\gl\ofLight.cpp" />

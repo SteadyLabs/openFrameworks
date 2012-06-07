@@ -240,6 +240,9 @@
     <ClInclude Include="..\..\..\openFrameworks\video\ofQuickTimeGrabber.h">
       <Filter>libs\openFrameworks\video</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\openFrameworks\events\ofTouch.h">
+      <Filter>libs\openFrameworks\events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\openFrameworks\app\ofAppGlutWindow.cpp">
@@ -406,6 +409,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\openFrameworks\video\ofQuickTimePlayer.cpp">
       <Filter>libs\openFrameworks\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\openFrameworks\events\ofTouch.cpp">
+      <Filter>libs\openFrameworks\events</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
