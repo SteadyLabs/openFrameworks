@@ -52,7 +52,7 @@ enum ofTargetPlatform{
 	//this is for TryEnterCriticalSection
 	//http://www.zeroc.com/forums/help-center/351-ice-1-2-tryentercriticalsection-problem.html
 	#ifndef _WIN32_WINNT
-		#   define _WIN32_WINNT 0x400
+		#define _WIN32_WINNT 0x0601 
 	#endif
 	#define WIN32_LEAN_AND_MEAN
 
