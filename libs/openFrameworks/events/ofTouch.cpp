@@ -7,7 +7,7 @@ ofTouch::ofTouch(ofBaseApp * ofAppPtr){}
 
 ofTouch::~ofTouch(void) {}
 
-
+#ifdef TARGET_WIN32
 LRESULT ofTouch::processTouch(HWND hWnd, WPARAM wParam, LPARAM lParam) {
 
 	BOOL bHandled = FALSE;
@@ -45,6 +45,7 @@ LRESULT ofTouch::processTouch(HWND hWnd, WPARAM wParam, LPARAM lParam) {
 		return DefWindowProc(hWnd, WM_TOUCH, wParam, lParam);
 	}
 }
+#endif
 
 void ofTouch::OnTouchDown(int id, int x, int y) {
 	static ofTouchEventArgs touchEventArgs;
