@@ -341,9 +341,14 @@ bool ofQuickTimePlayer::loadMovie(string name){
 
 
 		// ------------- get some pixels in there ------
+    
+    
 		GoToBeginningOfMovie(moviePtr);
 		SetMovieActiveSegment(moviePtr, -1,-1);
 		MoviesTask(moviePtr,0);
+    
+    
+    SetMovieActive(moviePtr, true);
 
 		#if defined(TARGET_OSX) && defined(__BIG_ENDIAN__)
 			convertPixels(offscreenGWorldPixels, pixels.getPixels(), width, height);
@@ -354,6 +359,8 @@ bool ofQuickTimePlayer::loadMovie(string name){
 		bPlaying 				= false;
 		bHavePixelsChanged 		= false;
 		speed 					= 1;
+    
+    
 
 		return true;
 
@@ -450,7 +457,7 @@ void ofQuickTimePlayer::stop(){
 	//--------------------------------------
 
 	StopMovie (moviePtr);
-	SetMovieActive (moviePtr, false);
+	//SetMovieActive (moviePtr, false);
 	bStarted = false;
 
 	//--------------------------------------
@@ -544,6 +551,7 @@ void ofQuickTimePlayer::setPosition(float pct){
 		long total 		= GetMovieDuration(moviePtr );
 		long newPos 	= (long)((float)total * pct);
 		SetMovieTimeValue(moviePtr, newPos);
+    UpdateMovie(moviePtr);
 		MoviesTask(moviePtr,0);
 
 	//--------------------------------------
@@ -559,7 +567,8 @@ void ofQuickTimePlayer::setFrame(int frame){
 		ofLog(OF_LOG_ERROR, "ofQuickTimePlayer: movie not loaded!");
 		return;
 	}
-	
+    
+    
 	//--------------------------------------
 	#ifdef OF_VIDEO_PLAYER_QUICKTIME
 	//--------------------------------------
@@ -582,6 +591,7 @@ void ofQuickTimePlayer::setFrame(int frame){
 
 	if (frameRate > 0){
 		double frameDuration = 1 / frameRate;
+        
 		TimeValue t = (TimeValue)(frame * frameDuration * movieTimeScale);
 		SetMovieTimeValue(moviePtr, t);
 		MoviesTask(moviePtr, 0);
