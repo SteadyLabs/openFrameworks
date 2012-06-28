@@ -9,7 +9,7 @@ ofTouch::~ofTouch(void) {}
 
 #ifdef TARGET_WIN32
 LRESULT ofTouch::processTouch(HWND hWnd, WPARAM wParam, LPARAM lParam) {
-	return DefWindowProc(hWnd, WM_TOUCH, wParam, lParam);
+	//return DefWindowProc(hWnd, WM_TOUCH, wParam, lParam);
 	BOOL bHandled = FALSE;
 	UINT cInputs = LOWORD(wParam);
 	PTOUCHINPUT pInputs = new TOUCHINPUT[cInputs];
